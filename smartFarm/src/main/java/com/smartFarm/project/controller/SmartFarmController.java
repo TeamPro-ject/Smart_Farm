@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mysql.cj.Session;
 import com.smartFarm.project.model.smartFarm.*;
+import com.smartFarm.project.security.CustomUserDetails;
 import com.smartFarm.project.service.SmartFarmService;
 
 import lombok.extern.log4j.Log4j2;
@@ -98,60 +99,6 @@ public class SmartFarmController {
 	public ModelAndView shamePoint(HttpServletRequest request) {
 		mav = smartFarmService.movePage("shamePoint");
 		return mav;
-	}
-
-	// -------------------------------유저로그인---------------------------------------
-	@RequestMapping(value = "/actionLogin")
-	public ModelAndView actionLogin(@RequestParam String login_id, @RequestParam String login_password,
-			@RequestParam String rememberID, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		mav = smartFarmService.actionUserLogin(login_id, login_password);
-		UserVo user = new UserVo();
-		if (mav.getModel().get("user") instanceof UserVo) {
-			user = (UserVo) mav.getModel().get("user");
-		}
-
-		if (user != null) {
-			HttpSession session = request.getSession();
-			session.setMaxInactiveInterval(60 * 60);
-			session.setAttribute("loginedUser", user);
-
-			// -------아이디 기억---------
-			if (rememberID.equals("off")) {
-				Cookie[] cookies = request.getCookies();
-				for (int i = 0; i < cookies.length; i++) {
-					String str = cookies[i].getValue();
-					if (str.equals(login_id)) {
-						cookies[i].setMaxAge(0);
-						response.addCookie(cookies[i]);
-					}
-				}
-			} else {
-				Cookie cookie = new Cookie("rememberId", login_id);
-				cookie.setMaxAge(60 * 60 * 24 * 31);
-				response.addCookie(cookie);
-			}
-		}
-		log.info(login_id + "님이 로그인 하셨습니다.");
-
-		return mav;
-	}
-
-	// -------------------------------로그아웃---------------------------------------
-	@RequestMapping(value = "/actionLogout")
-	public ModelAndView actionLogout(HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("loginedUser") != null) {
-			if (session.getAttribute("loginedUser") instanceof UserVo) {
-				UserVo user = (UserVo) session.getAttribute("loginedUser");
-				log.info(user.getUser_id() + "님이 로그아웃 하셨습니다.");
-			}
-			session.removeAttribute("loginedUser");
-		}
-
-		mav = smartFarmService.movePage("mainContent");
-		return mav;
-
 	}
 
 	// 로그인 가능여부 확인

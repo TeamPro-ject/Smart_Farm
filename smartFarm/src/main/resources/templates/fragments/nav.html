@@ -22,7 +22,7 @@
 		<li><a th:href="@{#}">개발진</a></li>
 		
 		<li th:if="${session.user eq null}"><a th:href="@{#}" id="loginTeg"> 로그인</a></li>
-		<li th:if="${session.user ne null}"><a th:href="@{actionLogout}"> 로그아웃</a></li>
+		<li th:if="${session.user ne null}"><a th:href="@{logoutProc}"> 로그아웃</a></li>
 		<!-- <a class="nav-link dropdown-toggle" data-bs-toggle="modal" data-bs-target="#loginModal" role="button" aria-haspopup="true" aria-expanded="false">
 					<span class="mr-2 d-none d-lg-inline text-gray-600 small">로그인 </span>
 				</a> -->

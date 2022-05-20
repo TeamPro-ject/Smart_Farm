@@ -1,9 +1,11 @@
-package com.smartFarm.project.model.smartFarm;
+package com.smartFarm.project.security;
 
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.smartFarm.project.model.smartFarm.UserVo;
 
 import lombok.Data;
 

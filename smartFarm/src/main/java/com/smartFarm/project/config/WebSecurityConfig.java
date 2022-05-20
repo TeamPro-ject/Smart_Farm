@@ -42,11 +42,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .permitAll()
         .and()
             .logout()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc"));
-//        .and()
- //       	.sessionManagement()
-//        	.maximumSessions(1) //최대세션을 1로설정
- //       	.maxSessionsPreventsLogin(false);  // 중복로그인시 이전 로그인했던 세션 만료. true시 이전 세션 유지
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logoutProc"))
+            .logoutSuccessUrl("/home")
+        .and()
+       		.sessionManagement()
+        	.maximumSessions(1) //최대세션을 1로설정
+        	.maxSessionsPreventsLogin(false);  // 중복로그인시 이전 로그인했던 세션 만료. true시 이전 세션 유지
         
        http.addFilterAfter(sessionFilter, UsernamePasswordAuthenticationFilter.class);
 	}	
