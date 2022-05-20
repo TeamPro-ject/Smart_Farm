@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js">
+	
+</script>
+
+</head>
+
+<div class="main">
+	<div class="inner">
+		<canvas id="myChart" width="300px" height="200px"></canvas>
+		<script th:inline="javascript">
+			var id=new Array();
+			var today = new Date();
+			var month = today.getMonth() + 1;
+			var date = today.getDate();
+			var yesterday1 = date - 1;
+			var yesterday2 = date - 2;
+			var yesterday3 = date - 3;
+			var yesterday4 = date - 4;
+			var yesterday5 = date - 5;
+			var ctx = document.getElementById('myChart');
+			var myChart = new Chart(ctx, {
+				/* bar or line 바로 보여줄것인지 라인으로 보여줄것인지 */
+				type : 'line',
+				data : {
+					/* x축 label */
+					labels : [ month + '/' + yesterday5,
+							month + '/' + yesterday4, month + '/' + yesterday3,
+							month + '/' + yesterday2, month + '/' + yesterday1,
+							month + '/' + date ],
+					datasets : [ {
+						label : '온도',
+						/* 그래프에 보여주는 수치 */
+						data : [ 10, 15, 13, 12, 17, 30 ],
+						backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)' ],
+						borderColor : [ 'rgba(255, 99, 132, 1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)' ],
+						fill : true,
+						lineTension : 0,
+						borderWidth : 2
+					} ]
+				},
+				options : {
+					responsive : false,
+					scales : {
+						yAxes : [ {
+							ticks : {
+								beginAtZero : true
+							}
+						} ]
+					}
+				}
+			});
+		</script>
+	</div>
+</div>
+</html>

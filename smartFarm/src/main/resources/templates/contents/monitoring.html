@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="main">
+	<div class="inner">
+		<div class="firstAll">
+			<section class="firsttiles">
+				<table class="firsttable">
+					<tr>
+						<th scope="row">식물명</th>
+						<td >모종이</td>
+					</tr>
+					<tr>
+						<th scope="row">날짜/시간</th>
+						<td th:text="${list.monitoring_time}"></tr>
+					<tr>
+						<th scope="row">온도/습도</th>
+						<td th:text="${list.monitoring_temperature}">내용이 들어갑니다.</td>
+					</tr>
+					<tr>
+						<th scope="row">수조 높이</th>
+						<td th:text="${list.first_water_tank_level}">내용이 들어갑니다.</td>
+					</tr>
+				</table>
+			</section>
+		</div>
+	</div>
+</div>
+</html>
+<!-- <div class="firstmain">
+	<div class="firstheader">
+		<div class="moniteringBox"></div>
+	<div class="firstbody">
+		<h3>이름 : 모종이</h3>
+		<h3>날짜/시간 : yyyy/mm/dd HH:MM</h3>
+		<h3>온도 : 'C</h3>
+		<h3>습도 : 100%</h3>
+
+	</div>
+	</div>
+</div> -->

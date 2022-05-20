@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/default_layout}">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link th:href="@{/css/smartFarm.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/arduino.js}"></script>
+<body>
+		<div id="wrapper">
+				<div id="main">
+				<form class ="setting">
+				<input type="button"  id="ledOn" onclick="LedControl('ledOn')"value="켜기">
+				<input type="button" id="ledOff" onclick="LedControl('ledOff')"value="끄기">
+				<input type="button"  id="showTime" onclick="LedControl('showTime')" value="시간">
+				<input type="button"  id="allOn" onclick="LedControl('fanOn')" value="팬켜기">
+				<input type="button"  id="allOff" onclick="LedControl('fanOff')" value="팬끄기">
+				<input type="button"  id="allOn" onclick="LedControl('pump1On')" value="펌프1켜기">
+				<input type="button"  id="allOff" onclick="LedControl('pump1Off')" value="펌프1끄기">
+				<input type="button"  id="allOn" onclick="LedControl('pump2On')" value="펌프2켜기">
+				<input type="button"  id="allOff" onclick="LedControl('pump2Off')" value="펌프2끄기">
+				<input type="button"  id="allOn" onclick="LedControl('pump3On')" value="펌프3켜기">
+				<input type="button"  id="allOff" onclick="LedControl('pump3Off')" value="펌프3끄기">
+				<input type="button"  id="doorOpen" onclick="LedControl('doorOpen')" value="문열기">
+				<input type="button" id="doorOpen" onclick="LedControl('doorClose')" value="문잠그기">
+				<br>
+				<lable>펌프1 셋팅</lable>
+				<input type="number" id="Interrupt"/>
+				<input type="button" id="changeTransmitDataInterrupt" onclick="LedControl('changeTransmitDataInterrupt')" value="전송 세팅값 변경">
+				<br>
+				<lable>led셋팅</lable>
+				<input type="time" id="ledOnTime"/>
+				<input type="time" id="ledOffTime"/>
+				<input type="button" id="changeSetting" onclick="LedControl('changeSetting1')" value="led세팅값 변경">
+				<!--
+				<lable>탱크1셋팅</lable>
+				<input type="time" id="pumpTime1"/>
+				<input type="time" id="ledOffTime"/>
+				<input type="button" id="changeSetting" onclick="LedControl('changeSetting2')" value="led세팅값 변경">
+				<lable>탱크2셋팅</lable>
+				<input type="time" id="ledOnTime"/>
+				<input type="time" id="ledOffTime"/>
+				<input type="button" id="changeSetting" onclick="LedControl('changeSetting3')" value="led세팅값 변경">
+				<lable>탱크3셋팅</lable>
+				<input type="time" id="ledOnTime"/>
+				<input type="time" id="ledOffTime"/>
+				<input type="button" id="changeSetting" onclick="LedControl('changeSetting4')" value="led세팅값 변경">
+				  -->
+				</form>
+				</div>
+			</div>
+		
+</body>
+
+</html>
