@@ -11,8 +11,8 @@
 </script>
 <nav th:fragment="fragment-nav" id="menu">
 	<h2>Menu</h2>
-	<label th:if="${session.loginedUser ne null}">
-	 [[${session.user.user_name}]] 님 환영합니다
+	<label th:if="${session.user ne null}">
+	 [[${session.user.userVo.user_name}]] 님 환영합니다
 	</label>
 	<ul>
 		<li><a th:href="@{#}">메인 페이지</a></li>

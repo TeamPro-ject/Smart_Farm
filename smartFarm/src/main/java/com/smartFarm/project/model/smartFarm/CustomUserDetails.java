@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,10 +14,10 @@ import java.util.List;
 @Data
 public class CustomUserDetails implements UserDetails{
 	
-private UserVo user;
+private UserVo userVo;
 	
 	public CustomUserDetails(UserVo user) {
-		this.user = user;
+		this.userVo = user;
 	}
 	
 	@Override
@@ -27,7 +26,7 @@ private UserVo user;
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		
 	
-			authorities.add(new SimpleGrantedAuthority(user.getUser_grade()));
+			authorities.add(new SimpleGrantedAuthority(userVo.getUser_grade()));
 		
 		return authorities;
 	}
@@ -35,13 +34,13 @@ private UserVo user;
 	@Override
 	public String getPassword() { //유저 비밀번호
 
-		return user.getUser_password();
+		return userVo.getUser_password();
 	}
 
 	@Override
 	public String getUsername() {// 유저 이름 혹은 아이디
 
-		return user.getUser_name();
+		return userVo.getUser_name();
 	}
 
 	@Override

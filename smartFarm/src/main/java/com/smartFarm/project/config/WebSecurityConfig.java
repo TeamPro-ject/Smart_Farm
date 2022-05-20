@@ -8,8 +8,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.smartFarm.project.security.SessionFilter;
 import com.smartFarm.project.security.UserDetailServiceImpl;
 
 
@@ -19,7 +21,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailServiceImpl cus;
    
-
+    @Autowired
+    SessionFilter sessionFilter;
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -45,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        	.maximumSessions(1) //최대세션을 1로설정
  //       	.maxSessionsPreventsLogin(false);  // 중복로그인시 이전 로그인했던 세션 만료. true시 이전 세션 유지
         
-       //http.addFilterAfter(sessionFilter, UsernamePasswordAuthenticationFilter.class);
+       http.addFilterAfter(sessionFilter, UsernamePasswordAuthenticationFilter.class);
 	}	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
