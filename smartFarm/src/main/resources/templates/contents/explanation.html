@@ -9,27 +9,33 @@
 
 <div class="main">
 	<div class="inner">
-		<canvas id="myChart" width="300px" height="200px"></canvas>
+		<canvas id="myChart" width="600px" height="200px"></canvas>
 		<script th:inline="javascript">
-			var id=new Array();
-			var today = new Date();
-			var month = today.getMonth() + 1;
-			var date = today.getDate();
-			var yesterday1 = date - 1;
-			var yesterday2 = date - 2;
-			var yesterday3 = date - 3;
-			var yesterday4 = date - 4;
-			var yesterday5 = date - 5;
+			var minutess=[];
+			var today= new Date();
+			var hours=('0'+today.getHours()).slice(-2);
+			var minutes=('0'+today.getHours()).slice(-2);
+			for(var i=0; i > 60; i=+5){
+				
+				if(minutes-i < 0){
+					
+				}
+				
+			}
 			var ctx = document.getElementById('myChart');
 			var myChart = new Chart(ctx, {
 				/* bar or line 바로 보여줄것인지 라인으로 보여줄것인지 */
 				type : 'line',
 				data : {
 					/* x축 label */
-					labels : [ month + '/' + yesterday5,
-							month + '/' + yesterday4, month + '/' + yesterday3,
-							month + '/' + yesterday2, month + '/' + yesterday1,
-							month + '/' + date ],
+					labels : [
+						hours+ ':' +minutes55 , hours+ ':' +minutes50 ,
+						hours+ ':' +minutes45 , hours+ ':' +minutes40 ,
+						hours+ ':' +minutes35 , hours+ ':' +minutes30 ,
+						hours+ ':' +minutes25 , hours+ ':' +minutes20 ,
+						hours+ ':' +minutes15 , hours+ ':' +minutes10 ,
+						hours+ ':' +minutes5 , hours+ ':' +minutes 
+							],
 					datasets : [ {
 						label : '온도',
 						/* 그래프에 보여주는 수치 */
@@ -63,6 +69,7 @@
 				}
 			});
 		</script>
+		
 	</div>
 </div>
 </html>
