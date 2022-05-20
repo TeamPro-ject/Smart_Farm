@@ -1,28 +1,24 @@
 package com.smartFarm.project.controller;
 
-import java.security.MessageDigest;
 import java.security.Principal;
 import java.util.List;
-
-import javax.servlet.http.Cookie;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.boot.internal.SessionFactoryBuilderImpl;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mysql.cj.Session;
 import com.smartFarm.project.model.smartFarm.*;
 import com.smartFarm.project.security.CustomUserDetails;
 import com.smartFarm.project.service.SmartFarmService;
@@ -44,19 +40,37 @@ public class SmartFarmController {
 
 	@Autowired
 	UserRepository userRepository;
-	
 
 	ModelAndView mav;
 
 	@RequestMapping(value = "/home")
-	public ModelAndView goMain(HttpServletRequest request) {
+	public ModelAndView home(HttpServletRequest request) {
 		mav = smartFarmService.movePage("home");
 		return mav;
 	}
+	@GetMapping(value = "/home")
+	public ModelAndView homeLogin(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "exception", required = false) String exception) {
+		mav = smartFarmService.movePage("home");
+		mav.addObject("error", error);
+		mav.addObject("exception", exception);
+		return mav;
+	}
+
+
+//	@RequestMapping(value = "/loginPage")
+//	public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
+//			@RequestParam(value = "exception", required = false) String exception) {
+//		mav = smartFarmService.movePage("home");
+//		mav.addObject("error", error);
+//		mav.addObject("exception", exception);
+//		log.info("loginForm view resolve");
+//		return mav;
+//	}
 
 	@RequestMapping(value = "/monitoring")
 	public ModelAndView monitoring(HttpServletRequest request) {
-		List<MonitoringVo> monitoring=monitoringRepository.findByDeviceCode("sm01");
+		List<MonitoringVo> monitoring = monitoringRepository.findByDeviceCode("sm01");
 		mav = smartFarmService.movePage("monitoring");
 		return mav;
 	}
@@ -69,10 +83,10 @@ public class SmartFarmController {
 		String password = userDetails.getPassword();
 		log.info(username);
 		log.info(password);
-		
+
 		HttpSession session = request.getSession();
 		log.info(session.getId());
-		
+
 		mav = smartFarmService.movePage("arduino");
 		return mav;
 	}
@@ -103,19 +117,19 @@ public class SmartFarmController {
 
 	// 로그인 가능여부 확인
 	@ResponseBody
-	@RequestMapping("/actionLoginCheck")
-	public String actionLoginCheck(@RequestParam String login_id, @RequestParam String login_password)
-			throws Exception {
-		JSONObject json = smartFarmService.actionLoginCheck(login_id, login_password);
+	@RequestMapping(value = "/loginCheck", method = { RequestMethod.POST })
+	public String actionLoginCheck(@RequestParam Map<String, Object> paramMap) throws Exception {
+		log.info("컨트");
+		JSONObject json = smartFarmService.actionLoginCheck(paramMap.get("user_id").toString(),
+				paramMap.get("user_password").toString());
 		return json.toString();
 	}
 
 	// 로그인한 user의 device_code 값과
 	@RequestMapping("/comprison")
-	public ModelAndView comprison(@RequestParam String sessionUserCode, String deviceCode,
-			Principal principal, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		
+	public ModelAndView comprison(@RequestParam String sessionUserCode, String deviceCode, Principal principal,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		/*
 		 * if (mav.getModel().get("monitoring") instanceof MonitoringVo) { monitoring =
 		 * (MonitoringVo) mav.getModel().get("monitoring"); }

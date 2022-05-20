@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.smartFarm.project.security.LoginFailHandler;
 import com.smartFarm.project.security.SessionFilter;
 import com.smartFarm.project.security.UserDetailServiceImpl;
 
@@ -26,19 +27,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
         http
         .authorizeRequests()
-        .antMatchers("/home","/explanation","/photo","/teamRole","/shamePoint").permitAll()    // LoadBalancer Chk
+        .antMatchers("/home","/explanation","/photo","/teamRole","/shamePoint").permitAll() 
             .antMatchers("/admin").hasAuthority("admin")
             .anyRequest().authenticated()
         .and()
             .formLogin()
-            .loginPage("/home")
+            .loginPage("/home?error=false&exception=login")
             .loginProcessingUrl("/loginProc")
             .usernameParameter("user_id")
             .passwordParameter("user_password")
             .defaultSuccessUrl("/home", true)
-            .failureForwardUrl("/shamePoint")
+            //.failureForwardUrl("/shamePoint")
+            .failureHandler(loginFailHandler())//로그인 실패 시 처리하는 핸들러 등록.
             .permitAll()
         .and()
             .logout()
@@ -51,13 +54,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         
        http.addFilterAfter(sessionFilter, UsernamePasswordAuthenticationFilter.class);
 	}	
+	
+	public LoginFailHandler loginFailHandler(){
+	        return new LoginFailHandler();
+	}
+	
 	@Override
-	public void configure(WebSecurity web) throws Exception {
+	public void configure(WebSecurity web) throws Exception { //정적자원들은 시큐리티에서 예외
 	    web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
 	}
 	
 	@Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    public void configure(AuthenticationManagerBuilder auth) throws Exception { //커스텀 유저디테일 설정
         auth.userDetailsService(cus);
     }
    

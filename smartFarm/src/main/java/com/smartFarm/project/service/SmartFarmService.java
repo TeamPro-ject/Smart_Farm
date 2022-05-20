@@ -65,6 +65,7 @@ public class SmartFarmService {
 
 	// 로그인 전 확인 ajax
 	public JSONObject actionLoginCheck(String user_id, String user_password) {
+		log.info(user_id+"//"+user_password);
 		UserVo user = userRepository.findById(user_id).get();
 		user.setUser_password(user.getUser_password().toLowerCase());
 		user_password = getSHA256(user_password);

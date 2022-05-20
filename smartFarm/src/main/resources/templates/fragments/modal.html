@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <style type="text/css">
 /*로그인 아이디*/
 /**/
@@ -29,9 +29,11 @@
 			<div class="modal_header">
 				<div class="login_input">
 					<label class="modal_title">아이디</label>
-					<input type="text" id="login_id" name="user_id" placeholder="아이디">
+					<input type="text" id="user_id" name="user_id" placeholder="아이디">
 					<label class="modal_title">비밀번호</label>
-					<input type="password" id="login_password" name="user_password" placeholder="비밀번호">
+					<input type="password" id="user_password" name="user_password" placeholder="비밀번호">
+					
+				
 				</div>
 
 				<div class="footerChecked">
@@ -41,7 +43,7 @@
 					<input type="checkbox" id="userLogin" name="user" value="login">
 					<label for="userLogin">로그인 유지</label>
 					<input type="hidden" id="togleSwitch_Hidden" name="rememberID">
-
+					
 				</div>
 				<div class="footerbutton">
 					<input class="loginButton" type="button" value="로그인" onclick="actionLoginCheck()">
@@ -52,5 +54,30 @@
 		</form>
 	</div>
 </div>
+<script th:inline="javascript">
+$(document).ready(function() {
+if([[${error}]]== 'true'){
+	
+	Swal.fire({
+		icon: 'error',
+		title: '',
+		text: [[${exception}]],
+	})
+	$("#loginButton").trigger("click");
+}else if([[${error}]]== 'false' && [[${exception}]] == 'login'){
+	$("#loginButton").trigger("click");
+	Swal.fire({
+		icon: 'error',
+		title: '',
+		text: "로그인이 필요합니다.",
+	})
+}
 
+
+
+
+});
+
+
+</script>
 </html>

@@ -1,7 +1,7 @@
 
 //로그인 ajax
 function actionLoginCheck() {
-	if ($('#login_id').val() == '') {
+	if ($('#user_id').val() == '') {
 		Swal.fire({
 			icon: 'error',
 			title: '',
@@ -10,7 +10,7 @@ function actionLoginCheck() {
 		return false;
 	}
 
-	if ($('#login_password').val() == '') {
+	if ($('#user_password').val() == '') {
 		Swal.fire({
 			icon: 'error',
 			title: '',
@@ -18,14 +18,21 @@ function actionLoginCheck() {
 		})
 		return false;
 	}
-	
-	$("#loginForm").submit();
-/** 	
+$("#loginForm").submit();
+
+/** 
+ var token = $("meta[name='_csrf']").attr("content");
+ var header = $("meta[name='_csrf_header']").attr("content");
+
+
 	$.ajax({
 		type: "post",
-		url: "actionLoginCheck",
-		data: { "login_id": $('#login_id').val(), "login_password": $('#login_password').val() },
+		url: "/loginCheck",
+		data: { "user_id": $('#user_id').val(), "user_password": $('#user_password').val() },
 		dataType: "json",
+		beforeSend : function(xhr){
+		xhr.setRequestHeader(header, token);
+		},
 		success: function(json) {
 			idCheckResult = json.result;
 
@@ -38,8 +45,8 @@ function actionLoginCheck() {
 					title: '',
 					text: '비밀번호가 맞지 않습니다.',
 				})
-				$("#login_password").val('');
-				//$("#login_password").focus();
+				//$("#user_password").val('');
+				$("#user_password").focus();
 			}
 		},
 		error: function(error) {
@@ -48,11 +55,11 @@ function actionLoginCheck() {
 				title: '',
 				text: '아이디가 존재하지 않습니다.',
 			})
-			$("#login_id").val('');
-			$("#login_password").val('');
-			$("#login_id").focus();
+			//$("#user_id").val('');
+			//$("#user_password").val('');
+			$("#user_id").focus();
 		}
 	});
-	
-	*/
+
+*/
 }
