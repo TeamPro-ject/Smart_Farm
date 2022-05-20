@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.boot.internal.SessionFactoryBuilderImpl;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,23 +55,29 @@ public class SmartFarmController {
 
 	@RequestMapping(value = "/monitoring")
 	public ModelAndView monitoring(HttpServletRequest request) {
-		List<MonitoringVo> monitoring=monitoringRepository.findAll();
-		
+		List<MonitoringVo> monitoring=monitoringRepository.findByDeviceCode("sm01");
 		mav = smartFarmService.movePage("monitoring");
-
 		return mav;
 	}
 
 	@RequestMapping(value = "/settingChange")
 	public ModelAndView settingChange(HttpServletRequest request) {
-		mav = smartFarmService.movePage("settingChange");
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		CustomUserDetails userDetails = (CustomUserDetails) principal;
+		String username = userDetails.getUsername();
+		String password = userDetails.getPassword();
+		log.info(username);
+		log.info(password);
+		
+		HttpSession session = request.getSession();
+		log.info(session.getId());
+		
+		mav = smartFarmService.movePage("arduino");
 		return mav;
 	}
 
 	@RequestMapping(value = "/explanation")
 	public ModelAndView explanation(HttpServletRequest request) {
-		List<MonitoringVo> monitoring=monitoringRepository.findAll();
-		
 		mav = smartFarmService.movePage("explanation");
 		return mav;
 	}

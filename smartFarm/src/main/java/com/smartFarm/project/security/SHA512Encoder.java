@@ -1,4 +1,4 @@
-package com.smartFarm.project.service;
+package com.smartFarm.project.security;
 
 import java.security.MessageDigest;
 
