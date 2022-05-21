@@ -50,7 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
        		.sessionManagement()
         	.maximumSessions(1) //최대세션을 1로설정
-        	.maxSessionsPreventsLogin(false);  // 중복로그인시 이전 로그인했던 세션 만료. true시 이전 세션 유지
+        	.maxSessionsPreventsLogin(false)  // 중복로그인시 이전 로그인했던 세션 만료. true시 이전 세션 유지
+        	.expiredUrl("/home?error=false&exception=logout");
         
        http.addFilterAfter(sessionFilter, UsernamePasswordAuthenticationFilter.class);
 	}	

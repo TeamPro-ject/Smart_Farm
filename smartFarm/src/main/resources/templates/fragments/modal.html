@@ -71,6 +71,12 @@ if([[${error}]]== 'true'){
 		title: '',
 		text: "로그인이 필요합니다.",
 	})
+}else if([[${error}]]== 'false' && [[${exception}]] == 'logout'){
+	Swal.fire({
+		icon: 'error',
+		title: '',
+		text: "로그아웃 되었습니다.",
+	})
 }
 
 
