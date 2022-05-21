@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,6 +73,7 @@ public class SmartFarmController {
 	public ModelAndView monitoring(HttpServletRequest request) {
 		List<MonitoringVo> monitoring = monitoringRepository.findByDeviceCode("sm01");
 		mav = smartFarmService.movePage("monitoring");
+		mav.addObject("monitoringData", monitoring);
 		return mav;
 	}
 
@@ -111,7 +113,9 @@ public class SmartFarmController {
 
 	@RequestMapping(value = "/shamePoint")
 	public ModelAndView shamePoint(HttpServletRequest request) {
+		List<MonitoringVo> monitoring = monitoringRepository.findByDevice_CodeDescLimit("sm01",24);
 		mav = smartFarmService.movePage("shamePoint");
+		mav.addObject("monitoringData", monitoring);
 		return mav;
 	}
 

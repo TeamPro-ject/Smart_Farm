@@ -24,14 +24,14 @@ public class ArduinoService {
 
 	public void insertSensingData(HashMap<String, Object> param) {	
 		 MonitoringVo mvo = MonitoringVo.builder(param.get("device").toString())
-				 .first_water_tank_level(param.get("firstdistance").toString())
-				 .second_water_tank_level(param.get("secondDistance").toString())
-				 .third_water_tank_level(param.get("thirdDistance").toString())
-				 .monitoring_humidity(param.get("humid").toString())
-				 .monitoring_temperature(param.get("tempC").toString())
-				 .monitoring_humidity(param.get("humid").toString())
+				 .firstWaterTankLevel(param.get("firstdistance").toString())
+				 .secondWaterTankLevel(param.get("secondDistance").toString())
+				 .thirdWaterTankLevel(param.get("thirdDistance").toString())
+				 .monitoringHumidity(param.get("humid").toString())
+				 .monitoringTemperature(param.get("tempC").toString())
+				 .monitoringHumidity(param.get("humid").toString())
 				 .magneticValue(param.get("magneticValue").toString())
-				 .monitoring_illuminance(param.get("illuminanceValue").toString())
+				 .monitoringIlluminance(param.get("illuminanceValue").toString())
 				 .build();
 		 
 		

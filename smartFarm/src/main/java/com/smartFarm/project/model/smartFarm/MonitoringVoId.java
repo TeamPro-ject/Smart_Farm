@@ -11,10 +11,10 @@ import lombok.*;
 public class MonitoringVoId implements Serializable  {
 	
 	@EqualsAndHashCode.Include
-	private String device_code;
+	private String deviceCode;
 	
 	@EqualsAndHashCode.Include
-	private LocalDateTime monitoring_time=LocalDateTime.now(); // 모니터링 시간
+	private LocalDateTime monitoringTime=LocalDateTime.now(); // 모니터링 시간
 	
 	
 	

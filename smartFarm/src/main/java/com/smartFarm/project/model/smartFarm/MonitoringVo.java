@@ -27,41 +27,41 @@ import lombok.RequiredArgsConstructor;
 public class MonitoringVo {
 	
 	@Id
-	@Column(nullable = false, length = 30) // column의 조건
+	@Column(name ="device_code", nullable = false, length = 30) // column의 조건
 	@NonNull
-	private String device_code;
+	private String deviceCode;
 	
 	@Id
 	@Builder.Default
-	@Column(nullable = false)
-	private LocalDateTime monitoring_time=LocalDateTime.now(); // 모니터링 시간
+	@Column(name ="monitoring_time", nullable = false)
+	private LocalDateTime monitoringTime=LocalDateTime.now(); // 모니터링 시간
 	
-	@Column( length = 10)
-	private String monitoring_temperature; // 온도
+	@Column(name ="monitoring_temperature", length = 10)
+	private String monitoringTemperature; // 온도
 	
-	@Column( length = 10)
-	private String monitoring_humidity; // 습도
+	@Column(name ="monitoring_humidity", length = 10)
+	private String monitoringHumidity; // 습도
 	
-	@Column( length = 10)
-	private String monitoring_illuminance; // 조도
+	@Column(name ="monitoring_illuminance", length = 10)
+	private String monitoringIlluminance; // 조도
 	
-	@Column( length = 10)
-	private String first_water_tank_level; //  1 물탱크 수위
+	@Column(name ="first_water_tank_level", length = 10)
+	private String firstWaterTankLevel; //  1 물탱크 수위
 	
-	@Column( length = 10)
-	private String second_water_tank_level; // 2 물탱크 수위
+	@Column(name ="second_water_tank_level", length = 10)
+	private String secondWaterTankLevel; // 2 물탱크 수위
 	
-	@Column( length = 10)
-	private String third_water_tank_level; // 3 물탱크 수위
+	@Column(name ="third_water_tank_level", length = 10)
+	private String thirdWaterTankLevel; // 3 물탱크 수위
 	
-	@Column( length = 3)
+	@Column(name ="magnetic_value", length = 3)
 	private String magneticValue; // 자석센서
 	
-	public static MonitoringVoBuilder builder(String device_code) {
-        if(device_code == null) {
+	public static MonitoringVoBuilder builder(String deviceCode) {
+        if(deviceCode == null) {
             throw new IllegalArgumentException("필수 파라미터 누락");
         }
-        return monitoringVoBuilder().device_code(device_code);
+        return monitoringVoBuilder().deviceCode(deviceCode);
     }
 
 }
