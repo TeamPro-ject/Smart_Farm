@@ -182,8 +182,4 @@
 
 		});
 		
-	var monitoring=('#firstA');
-	$monitoring.on('click',function(){
-		alret()
-	})
 })(jQuery);
