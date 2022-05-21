@@ -1,16 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<style type="text/css">
-/*로그인 아이디*/
-/**/
-#modal .symboleimg {
-	display: block;
-	width: 17em;
-	height: 12em;
-	background-color: transparent;
-	margin-top: 3em;
-	margin-bottom: 3em;
-}
-</style>
+
 
 <link th:href="@{/css/bodys.css}" rel="stylesheet">
 <script type="text/javascript" th:src="@{/js/login.js}"></script>
@@ -40,10 +29,9 @@
 					
 					<input type="checkbox" id="userID" name="user" value="id" checked>
 					<label for="userID">아이디 유지</label>
-					<input type="checkbox" id="userLogin" name="user" value="login">
-					<label for="userLogin">로그인 유지</label>
-					<input type="hidden" id="togleSwitch_Hidden" name="rememberID">
-					
+					<input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me" checked>
+					<label class="form-check-label" for="rememberMe">로그인 유지</label>
+
 				</div>
 				<div class="footerbutton">
 					<input class="loginButton" type="button" value="로그인" onclick="actionLoginCheck()">
@@ -57,7 +45,6 @@
 <script th:inline="javascript">
 $(document).ready(function() {
 if([[${error}]]== 'true'){
-	
 	Swal.fire({
 		icon: 'error',
 		title: '',
@@ -71,13 +58,26 @@ if([[${error}]]== 'true'){
 		title: '',
 		text: "로그인이 필요합니다.",
 	})
+}else if([[${error}]]== 'false' && [[${exception}]] == 'logout'){
+	Swal.fire({
+		icon: 'error',
+		title: '',
+		text: "로그아웃 되었습니다.",
+	})
 }
-
-
-
-
 });
 
 
+$("#rememberMe").click(function () {
+    if ($("input:checkbox[id='rememberMe']").is(":checked")) {
+        Cookies.set("rememberMe", true);
+    } else {
+        Cookies.set("rememberMe", false);
+    }
+    alert("rememberMe")
+})
+if (Cookies.get("rememberMe") === 'true') {
+    $("input:checkbox[id='rememberMe']").prop("checked", true);
+}
 </script>
 </html>
