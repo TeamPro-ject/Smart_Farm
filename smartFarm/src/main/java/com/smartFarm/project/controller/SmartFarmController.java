@@ -49,6 +49,7 @@ public class SmartFarmController {
 		mav = smartFarmService.movePage("home");
 		return mav;
 	}
+	
 	@GetMapping(value = "/home")
 	public ModelAndView homeLogin(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "exception", required = false) String exception) {
@@ -58,16 +59,6 @@ public class SmartFarmController {
 		return mav;
 	}
 
-
-//	@RequestMapping(value = "/loginPage")
-//	public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
-//			@RequestParam(value = "exception", required = false) String exception) {
-//		mav = smartFarmService.movePage("home");
-//		mav.addObject("error", error);
-//		mav.addObject("exception", exception);
-//		log.info("loginForm view resolve");
-//		return mav;
-//	}
 
 	@RequestMapping(value = "/monitoring")
 	public ModelAndView monitoring(HttpServletRequest request) {
@@ -113,39 +104,22 @@ public class SmartFarmController {
 
 	@RequestMapping(value = "/shamePoint")
 	public ModelAndView shamePoint(HttpServletRequest request) {
-		List<MonitoringVo> monitoring = monitoringRepository.findByDevice_CodeDescLimit("sm01",24);
 		mav = smartFarmService.movePage("shamePoint");
-		mav.addObject("monitoringData", monitoring);
+		
+		HttpSession session = request.getSession();
+		String device_code="";
+		
+		if(session.getAttribute("user") instanceof CustomUserDetails) {
+			CustomUserDetails user=(CustomUserDetails) session.getAttribute("user");
+			UserVo userVo=user.getUserVo();
+			device_code=userVo.getUser_device();
+			List<MonitoringVo> monitoring = monitoringRepository.findByDevice_CodeDescLimit(device_code,24);
+			mav.addObject("monitoringData", monitoring);
+		}
+		
 		return mav;
 	}
 
-	// 로그인 가능여부 확인
-	@ResponseBody
-	@RequestMapping(value = "/loginCheck", method = { RequestMethod.POST })
-	public String actionLoginCheck(@RequestParam Map<String, Object> paramMap) throws Exception {
-		log.info("컨트");
-		JSONObject json = smartFarmService.actionLoginCheck(paramMap.get("user_id").toString(),
-				paramMap.get("user_password").toString());
-		return json.toString();
-	}
-
-	// 로그인한 user의 device_code 값과
-	@RequestMapping("/comprison")
-	public ModelAndView comprison(@RequestParam String sessionUserCode, String deviceCode, Principal principal,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		/*
-		 * if (mav.getModel().get("monitoring") instanceof MonitoringVo) { monitoring =
-		 * (MonitoringVo) mav.getModel().get("monitoring"); }
-		 */
-		/*
-		 * MonitoringVo monitoring = new MonitoringVo(); String device_Code = (String)
-		 * monitoring.getDevice_code(); String sessionDevice_Code=principal.getName();
-		 * System.out.printf(device_Code,sessionDevice_Code); if(sessionDevice_Code !=
-		 * null) { mav =
-		 * smartFarmService.userComparison(device_Code,sessionDevice_Code); }
-		 */
-		return mav;
-	}
+	
 
 }
