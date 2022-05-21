@@ -80,18 +80,18 @@ public class SmartFarmVoTest {
         UserVo user=userRepository.findById((String)"lsu878").get();
         userRepository.delete(user);
     }
-    @Test
-    void tt() {
-		mr.save( 
-				MonitoringVo.builder("sf02")
-				 .first_water_tank_level("11")
-				 .second_water_tank_level("11")
-				 .third_water_tank_level("11")
-				 .monitoring_humidity("11")
-				 .monitoring_temperature("11")
-				 .monitoring_humidity("11")
-				 .magneticValue("11")
-				 .build());
-    }
+//    @Test
+//    void tt() {
+//		mr.save( 
+//				MonitoringVo.builder("sf02")
+//				 .first_water_tank_level("11")
+//				 .second_water_tank_level("11")
+//				 .third_water_tank_level("11")
+//				 .monitoring_humidity("11")
+//				 .monitoring_temperature("11")
+//				 .monitoring_humidity("11")
+//				 .magneticValue("11")
+//				 .build());
+//    }
 
 }
