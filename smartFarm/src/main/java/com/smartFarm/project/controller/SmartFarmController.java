@@ -62,9 +62,20 @@ public class SmartFarmController {
 
 	@RequestMapping(value = "/monitoring")
 	public ModelAndView monitoring(HttpServletRequest request) {
-		List<MonitoringVo> monitoring = monitoringRepository.findByDeviceCode("sm01");
 		mav = smartFarmService.movePage("monitoring");
-		mav.addObject("monitoringData", monitoring);
+		
+		HttpSession session = request.getSession();
+		String device_code="";
+		
+		
+		if(session.getAttribute("user") instanceof CustomUserDetails) {
+			CustomUserDetails user=(CustomUserDetails) session.getAttribute("user");
+			UserVo userVo=user.getUserVo();
+			device_code=userVo.getUser_device();
+			List<MonitoringVo> monitoring = monitoringRepository.findByDevice_CodeDescLimit(device_code,24);
+			mav.addObject("monitoringData", monitoring);
+		}
+		
 		return mav;
 	}
 
