@@ -1,5 +1,6 @@
 package com.smartFarm.project.model.smartFarm;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -34,7 +35,12 @@ public class MonitoringVo {
 	@Id
 	@Builder.Default
 	@Column(name ="monitoring_time", nullable = false)
-	private LocalDateTime monitoringTime=LocalDateTime.now(); // 모니터링 시간
+	private LocalTime monitoringTime=LocalTime.now();
+	
+	@Id
+	@Builder.Default
+	@Column(name ="monitoring_date", nullable = false)
+	private LocalDate monitoringDate=LocalDate.now(); // 모니터링 시간
 	
 	@Column(name ="monitoring_temperature", length = 10)
 	private String monitoringTemperature; // 온도

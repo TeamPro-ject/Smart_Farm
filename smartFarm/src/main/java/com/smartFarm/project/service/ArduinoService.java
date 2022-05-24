@@ -29,7 +29,6 @@ public class ArduinoService {
 				 .thirdWaterTankLevel(param.get("thirdDistance").toString())
 				 .monitoringHumidity(param.get("humid").toString())
 				 .monitoringTemperature(param.get("tempC").toString())
-				 .monitoringHumidity(param.get("humid").toString())
 				 .magneticValue(param.get("magneticValue").toString())
 				 .monitoringIlluminance(param.get("illuminanceValue").toString())
 				 .build();

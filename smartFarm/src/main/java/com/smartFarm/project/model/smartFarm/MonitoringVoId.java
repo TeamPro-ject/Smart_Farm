@@ -1,7 +1,8 @@
 package com.smartFarm.project.model.smartFarm;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 import lombok.*;
@@ -14,8 +15,9 @@ public class MonitoringVoId implements Serializable  {
 	private String deviceCode;
 	
 	@EqualsAndHashCode.Include
-	private LocalDateTime monitoringTime=LocalDateTime.now(); // 모니터링 시간
+	private LocalTime monitoringTime=LocalTime.now(); // 모니터링 시간
 	
-	
+	@EqualsAndHashCode.Include
+	private LocalDate monitoringDate=LocalDate.now(); // 모니터링 시간
 	
 }

@@ -14,7 +14,7 @@ public interface MonitoringRepository extends JpaRepository<MonitoringVo, Monito
 	List<MonitoringVo> findByDeviceCode(String deviceCode);
 
 	// SQL 일반 파라미터 쿼리, @Param 사용 O
-	@Query(value = "select * from monitoring where device_code = :device_code order by monitoring_time DESC LIMIT :limit", nativeQuery = true)
+	@Query(value = "select * from monitoring where device_code = :device_code order by monitoring_time DESC , monitoring_date LIMIT :limit", nativeQuery = true)
 	public List<MonitoringVo> findByDevice_CodeDescLimit(@Param(value = "device_code") String device_code, @Param(value = "limit") int limit);
 
 }

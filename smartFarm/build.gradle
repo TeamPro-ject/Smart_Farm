@@ -29,7 +29,7 @@ dependencies {
 	implementation 'org.codehaus.jackson:jackson-core-asl:1.1.0'
 	//implementation 'net.sf.json-lib:json-lib:2.4'
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-	
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 	compileOnly 'org.projectlombok:lombok'
 	compileOnly 'org.projectlombok:lombok'  //컴파일 및 실행할 때 써주세요의 의미정도?
 	annotationProcessor('org.projectlombok:lombok')  //에노테이션을 쓸 때 롬북도 봐라의 의미정도?
