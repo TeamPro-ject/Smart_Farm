@@ -34,7 +34,7 @@ public class ArduinoService {
 				 .monitoringIlluminance(param.get("illuminanceValue").toString())
 				 .build();
 		 
-		
+		log.info(mvo.getMonitoringTime());	
 		MonitoringVo mvos=monitoringRepository.save(mvo);
 		monitoringRepository.flush();
 		log.info(mvo.toString());

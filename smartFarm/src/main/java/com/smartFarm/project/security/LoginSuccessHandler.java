@@ -32,17 +32,19 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 			Authentication authentication) throws IOException, ServletException {
 		// 쿠팡 둘러보기 하다가 로그인 성공 시 다시 거기로 가는 경우
 		setDefaultTargetUrl("/home");
-		SavedRequest savedRequest = requestCache.getRequest(request, response);
-		if (savedRequest != null) {
-			// 인증 받기 전 url로 이동하기
-			String targetUrl = savedRequest.getRedirectUrl();
-			log.info(targetUrl);
-			requestCache.removeRequest(request, response);// 세션에 저장된 객체를 다 사용한 뒤에는 지워줘서 메모리 누수 방지
-			
-			redirectStrategy.sendRedirect(request, response, getDefaultTargetUrl());
-		} else {
-			// 기본 url로 가도록 함함
-			redirectStrategy.sendRedirect(request, response, getDefaultTargetUrl());
-		}
+//		SavedRequest savedRequest = requestCache.getRequest(request, response);
+//		if (savedRequest != null) {
+//			// 인증 받기 전 url로 이동하기
+//			String targetUrl = savedRequest.getRedirectUrl();
+//			log.info(targetUrl);
+//			requestCache.removeRequest(request, response);// 세션에 저장된 객체를 다 사용한 뒤에는 지워줘서 메모리 누수 방지
+//			
+//			redirectStrategy.sendRedirect(request, response, getDefaultTargetUrl());
+//		} else {
+//			// 기본 url로 가도록 함함
+//			redirectStrategy.sendRedirect(request, response, getDefaultTargetUrl());
+//		}
+		
+		redirectStrategy.sendRedirect(request, response, getDefaultTargetUrl());
 	}
 }

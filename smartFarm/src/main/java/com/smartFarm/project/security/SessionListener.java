@@ -10,7 +10,7 @@ public class SessionListener implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         System.out.println("session created");
-        se.getSession().setMaxInactiveInterval(60*60);
+        se.getSession().setMaxInactiveInterval(10);
     }
 
     @Override
