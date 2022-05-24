@@ -1,6 +1,7 @@
 package com.smartFarm.project.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,18 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mysql.cj.xdevapi.JsonArray;
 import com.smartFarm.project.model.smartFarm.*;
 import com.smartFarm.project.security.CustomUserDetails;
 import com.smartFarm.project.service.SmartFarmService;
@@ -131,6 +135,13 @@ public class SmartFarmController {
 		return mav;
 	}
 
-	
+	@ResponseBody
+	@RequestMapping(value = "/app/monitoring")
+	public String insertSensingData( @RequestParam String device_code) {
+		List<MonitoringVo> monitoring = monitoringRepository.findByDevice_CodeDescLimit(device_code,24);
+		String result=JSONArray.toJSONString(monitoring);
+		return result;
+		
+	}
 
 }
