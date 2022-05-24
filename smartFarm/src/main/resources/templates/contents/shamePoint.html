@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
 <body>
-<div class="chartBox" style="width:1000px; height: 550px; margin-left:auto; margin-right:auto; " >
-	<div class="shamebox1" style="width: 50%; height: 100%; margin-left:auto; margin-right:auto; float:left; padding:20px;">
-	<div class= "shameDiv">
-		<table class="shameTable">
-		<thead>
-			<tr>
-			<td>문 열림/닫힘</td>
-			<td>조도</td>
-			</tr>
-		</thead>
-		<tbody class="shameTbody">
-			<tr >
-				<th th:if="${monitoringData[0].magneticValue.toString.equals('1')}">열림</th>
-				<th th:if="${monitoringData[0].magneticValue.toString.equals('0')}">닫힘</th>
-				<th th:text="${monitoringData[0].monitoringIlluminance}"></th>
-			</tr>		
-		</tbody>
-		</table>
-	</div>
-		<canvas id="tempChart"></canvas>
-	</div>
-	<div class="shamebox2" style="width: 50%; height: 100%; margin-left:auto; margin-right:auto; float:right; padding:20px;">
-		<canvas id="humidityChart"></canvas>
-		<canvas id="WaterLevelChart"></canvas>
-	</div>
-</div>
+	<table class="chartBox">
+		<th class="tableLine">
+			<div class="doorTableDiv">
+				<table class="doorTable">
+					<thead>
+						<tr>
+							<td><label>문 열림/닫힘</label></td>
+							<td>조도</td>
+						</tr>
+					</thead>
+					<tbody class="doorTbody">
+						<tr>
+							<th class="ththt" th:if="${monitoringData[0].magneticValue.toString.equals('1')}">열림</th>
+							<th th:if="${monitoringData[0].magneticValue.toString.equals('0')}">닫힘</th>
+							<th th:text="${monitoringData[0].monitoringIlluminance}"></th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</th>
+		<th>
+			<div class="waterLevelDiv">
+				<canvas id="WaterLevelChart"></canvas>
+			</div>
+		</th>
+		<tr>
+			<td class="tdLine">
+				<div class="tempChartDiv">
+					<canvas id="tempChart"></canvas>
+				</div>
+			</td>
+			<td>
+				<div class="humidityChart">
+					<canvas id="humidityChart"></canvas>
+				</div>
+			</td>
+		</tr>
+	</table>
 </body>
 
 
@@ -49,8 +63,8 @@
 		labels : labels,
 		datasets : [ {
 			label : '온도변화',
-			backgroundColor : 'red',
-			borderColor : 'red',
+			backgroundColor : 'rgb(231,137,154)',
+			borderColor : 'rgb(231,137,154)',
 			data : temp,
 		} ]
 	};
@@ -59,8 +73,8 @@
 			labels : labels,
 			datasets : [ {
 				label : '습도변화',
-				backgroundColor : 'blue',
-				borderColor : 'blue',
+				backgroundColor : 'rgb(127,197,238)',
+				borderColor : 'rgb(127,197,238)',
 				data : humidity,
 			} ]
 		};
@@ -68,8 +82,8 @@
 			labels : WaterLevelLabels,
 			datasets : [ {
 				label : '수조높이',
-				backgroundColor : 'green',
-				borderColor : 'green',
+				backgroundColor : 'rgb(114,183,172)',
+				borderColor : 'rgb(114,183,172)',
 				data : WaterLevel,
 			} ]
 		};
