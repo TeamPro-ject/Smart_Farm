@@ -328,6 +328,7 @@ to {
 /* settingChangeHTML */
 
 .settingTable{
+	border-radius:50%;
 	margin:auto;
 	width: 70%;
 	font-family: 'Dongle';
@@ -335,6 +336,7 @@ to {
 }
 
 .settingTable th{
+	margin:auto;
 	text-align:center;
 	background-color: cornflowerblue;
 }
