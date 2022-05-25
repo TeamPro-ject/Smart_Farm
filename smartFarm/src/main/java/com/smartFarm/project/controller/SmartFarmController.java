@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -85,17 +86,24 @@ public class SmartFarmController {
 
 	@RequestMapping(value = "/settingChange")
 	public ModelAndView settingChange(HttpServletRequest request) {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		CustomUserDetails userDetails = (CustomUserDetails) principal;
-		String username = userDetails.getUsername();
-		String password = userDetails.getPassword();
-		log.info(username);
-		log.info(password);
-
+		mav = smartFarmService.movePage("settingChange");
+		
 		HttpSession session = request.getSession();
-		log.info(session.getId());
+		String device_code="";
+		
+		if(session.getAttribute("user") instanceof CustomUserDetails) {
+			CustomUserDetails user=(CustomUserDetails) session.getAttribute("user");
+			UserVo userVo=user.getUserVo();
+			device_code=userVo.getUser_device();
+			Optional<SmartFarmVo> optinal=smartFarmRepository.findById(device_code);
+			if(optinal.isPresent()) {
+				SmartFarmVo svo=optinal.get();
+				mav.addObject("SmartFarmVo", svo);
+			}
+			
+		}
 
-		mav = smartFarmService.movePage("arduino");
+		
 		return mav;
 	}
 

@@ -1,13 +1,10 @@
 package com.smartFarm.project.model.smartFarm;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
@@ -42,25 +39,25 @@ public class MonitoringVo {
 	@Column(name ="monitoring_date", nullable = false)
 	private LocalDate monitoringDate=LocalDate.now(); // 모니터링 시간
 	
-	@Column(name ="monitoring_temperature", length = 10)
+	@Column(name ="monitoring_temperature", length = 10, nullable = false)
 	private String monitoringTemperature; // 온도
 	
-	@Column(name ="monitoring_humidity", length = 10)
+	@Column(name ="monitoring_humidity", length = 10, nullable = false)
 	private String monitoringHumidity; // 습도
 	
-	@Column(name ="monitoring_illuminance", length = 10)
+	@Column(name ="monitoring_illuminance", length = 10, nullable = false)
 	private String monitoringIlluminance; // 조도
 	
-	@Column(name ="first_water_tank_level", length = 10)
+	@Column(name ="first_water_tank_level", length = 10, nullable = false)
 	private String firstWaterTankLevel; //  1 물탱크 수위
 	
-	@Column(name ="second_water_tank_level", length = 10)
+	@Column(name ="second_water_tank_level", length = 10, nullable = false)
 	private String secondWaterTankLevel; // 2 물탱크 수위
 	
-	@Column(name ="third_water_tank_level", length = 10)
+	@Column(name ="third_water_tank_level", length = 10, nullable = false)
 	private String thirdWaterTankLevel; // 3 물탱크 수위
 	
-	@Column(name ="magnetic_value", length = 3)
+	@Column(name ="magnetic_value", length = 3, nullable = false)
 	private String magneticValue; // 자석센서
 	
 	public static MonitoringVoBuilder builder(String deviceCode) {

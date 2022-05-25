@@ -43,43 +43,7 @@ public class SmartFarmService {
 		return mav;
 	}
 
-	// -------------------------------유저로그인---------------------------------------
-	public ModelAndView actionUserLogin(String user_id, String user_password) {
-		UserVo user = userRepository.findById(user_id).get();
 
-		if (user.getUser_password().toLowerCase().equals(getSHA256(user_password))) {
-			// 어드민여부 확인
-			if (user.getUser_grade().equals("admin")) {
-				mav = movePage("mainContent");
-			} else { // 아닐경우 유저화면
-				mav = movePage("mainContent");
-			}
-		} else { // 로그인 실패
-			mav = movePage("mainContent");
-			return mav;
-		}
-
-		mav.addObject("user", user);
-		return mav;
-	}
-
-	// 로그인 전 확인 ajax
-	public JSONObject actionLoginCheck(String user_id, String user_password) {
-		log.info(user_id+"//"+user_password);
-		UserVo user = userRepository.findById(user_id).get();
-		user.setUser_password(user.getUser_password().toLowerCase());
-		user_password = getSHA256(user_password);
-		log.info(user.getUser_id());
-		JSONObject json = new JSONObject();
-		
-		if (user.getUser_password().equals(user_password)) {
-			json.put("result", "true");
-		} else {
-			json.put("result", "false");
-		}
-		log.info(json.toString());
-		return json;
-	}
 
 	// ---------------------암호화---------------------------//
 	public String getSHA256(String data) {
