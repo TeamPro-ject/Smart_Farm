@@ -38,6 +38,19 @@
 							<th>펌프2 셋팅</th>
 							<th>펌프3 셋팅</th>
 							<th>led 셋팅</th>
+							<tr>
+								<td> <input type="number" id="Interrupt1"/></td>
+								<td><input type="number" id="Interrupt2"/></td>
+								<td><input type="number" id="Interrupt3"/></td>
+								<td>  <input type="time" id="ledOnTime"/><input type="time" id="ledOffTime"/>
+								</td>
+							</tr>
+							<tr>
+								<td><input type="button" id="changeTransmitDataInterrupt1" onclick="ArduinoControl('pumpSetting1')" value="전송 세팅값 변경"></td>
+								<td><input type="button" id="changeTransmitDataInterrupt2" onclick="ArduinoControl('pumpSetting2')" value="전송 세팅값 변경"></td>
+								<td><input type="button" id="changeTransmitDataInterrupt3" onclick="ArduinoControl('pumpSetting3')" value="전송 세팅값 변경"></td>
+								<td><input type="button" id="changeSetting" onclick="ArduinoControl('changeLedSetting1')" value="led세팅값 변경"></td>
+							</tr>
 						</table>
 						<!-- <input type="button" id="ledOn" onclick="LedControl('ledOn')" value="켜기">
 						<input type="button" id="ledOff" onclick="LedControl('ledOff')" value="끄기">
@@ -52,7 +65,7 @@
 						<input type="button" id="allOff" onclick="LedControl('pump3Off')" value="펌프3끄기">
 						<input type="button" id="doorOpen" onclick="LedControl('doorOpen')" value="문열기">
 						<input type="button" id="doorOpen" onclick="LedControl('doorClose')" value="문잠그기"> -->
-						<br>
+						<!-- <br>
 						<lable>펌프1 셋팅</lable>
 						<input type="number" id="Interrupt" />
 						<input type="button" id="changeTransmitDataInterrupt" onclick="LedControl('changeTransmitDataInterrupt')" value="전송 세팅값 변경">
@@ -60,7 +73,7 @@
 						<lable>led셋팅</lable>
 						<input type="time" id="ledOnTime" />
 						<input type="time" id="ledOffTime" />
-						<input type="button" id="changeSetting" onclick="LedControl('changeSetting1')" value="led세팅값 변경">
+						<input type="button" id="changeSetting" onclick="LedControl('changeSetting1')" value="led세팅값 변경"> -->
 						<!--
 				<lable>탱크1셋팅</lable>
 				<input type="time" id="pumpTime1"/>
@@ -83,26 +96,35 @@
 
 </body>
 
-<script type="text/javascript">
+<script  th:inline="javascript">
 
-function LedControl(action){
+function ArduinoControl(action){
+   var smartFarmVo=[[${SmartFarmVo}]];
+   var ipAddress= "ws://"+[[${SmartFarmVo.ipAddress}]]+":80";
     if("WebSocket" in window){//브라우저가 지원하는지 체크후
         //웹소켓을 열고
-        var ws = new WebSocket("ws://192.168.210.224:80");
+        var ws = new WebSocket(ipAddress);
         ws.onopen = function(){
-        	
-        	if(action== "changeSetting1"){
-        		ws.send(action+"/"+$("#ledOnTime").val()+"/"+$("#ledOffTime").val());
+           
+           if(action== "changeSetting1"){
+              ws.send(action+"/"+$("#ledOnTime").val()+"/"+$("#ledOffTime").val());
 
-        	}else if(action== "changeTransmitDataInterrupt"){
-        		ws.send(action+$("#Interrupt").val());
+           }else if(action.indexOf("pumpSetting")>=0){
+              if(action.charAt(action.length-1)=='1'){
+                 ws.send(action+"/"+$("#Interrupt1").val());
+              }else if(action.charAt(action.length-1)=='2'){
+                 ws.send(action+"/"+$("#Interrupt2").val());
+              }else if(action.charAt(action.length-1)=='3'){
+                 ws.send(action+"/"+$("#Interrupt3").val());
+              }
+              
 
-        	}else
-        	ws.send(action);
+           }else
+           ws.send(action);
   
         };
         ws.onmessage = function(evt){
-			//alert(evt.data);
+         //alert(evt.data);
             ws.close();
         };
         ws.onclose = function(){
@@ -112,7 +134,7 @@ function LedControl(action){
     }
 }
 
-
 </script>
+
 
 </html>

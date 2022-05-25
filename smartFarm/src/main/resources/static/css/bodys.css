@@ -326,12 +326,8 @@ to {
 }
 
 /* settingChangeHTML */
-.setting{
-	margin-top: 5%;
-}
 
 .settingTable{
-	border-collapse:collapse;
 	margin:auto;
 	width: 70%;
 	font-family: 'Dongle';
@@ -341,4 +337,16 @@ to {
 .settingTable th{
 	text-align:center;
 	background-color: cornflowerblue;
+}
+.settingTimeTable{
+	align-content:center;
+	font-family: 'Dongle';
+	margin:auto;
+	width: 70%;
+	font-size:20px;
+}
+.settingTimeTable th{
+	text-align:center;
+	background-color: cornflowerblue;
+	
 }
