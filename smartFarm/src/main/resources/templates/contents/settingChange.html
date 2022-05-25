@@ -3,32 +3,64 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link th:href="@{/css/smartFarm.css}" rel="stylesheet" />
 <body>
-		<div id="wrapper">
-				<div id="main">
-				<form class ="setting">
-				<input type="button"  id="ledOn" onclick="LedControl('ledOn')"value="켜기">
-				<input type="button" id="ledOff" onclick="LedControl('ledOff')"value="끄기">
-				<input type="button"  id="showTime" onclick="LedControl('showTime')" value="시간">
-				<input type="button"  id="allOn" onclick="LedControl('fanOn')" value="팬켜기">
-				<input type="button"  id="allOff" onclick="LedControl('fanOff')" value="팬끄기">
-				<input type="button"  id="allOn" onclick="LedControl('pump1On')" value="펌프1켜기">
-				<input type="button"  id="allOff" onclick="LedControl('pump1Off')" value="펌프1끄기">
-				<input type="button"  id="allOn" onclick="LedControl('pump2On')" value="펌프2켜기">
-				<input type="button"  id="allOff" onclick="LedControl('pump2Off')" value="펌프2끄기">
-				<input type="button"  id="allOn" onclick="LedControl('pump3On')" value="펌프3켜기">
-				<input type="button"  id="allOff" onclick="LedControl('pump3Off')" value="펌프3끄기">
-				<input type="button"  id="doorOpen" onclick="LedControl('doorOpen')" value="문열기">
-				<input type="button" id="doorOpen" onclick="LedControl('doorClose')" value="문잠그기">
-				<br>
-				<lable>펌프1 셋팅</lable>
-				<input type="number" id="Interrupt"/>
-				<input type="button" id="changeTransmitDataInterrupt" onclick="LedControl('changeTransmitDataInterrupt')" value="전송 세팅값 변경">
-				<br>
-				<lable>led셋팅</lable>
-				<input type="time" id="ledOnTime"/>
-				<input type="time" id="ledOffTime"/>
-				<input type="button" id="changeSetting" onclick="LedControl('changeSetting1')" value="led세팅값 변경">
-				<!--
+	<div id="wrapper">
+		<div id="main">
+			<div class="main">
+				<div class="inner">
+					<form class="setting">
+						<table class="settingTable">
+							<th>LED</th>
+							<th>PAN</th>
+							<th>PUMP1</th>
+							<th>PUMP2</th>
+							<th>PUMP3</th>
+							<th>DOOR</th>
+							<tr>
+								<td><input type="button" id="ledOn" onclick="LedControl('ledOn')" value="켜기"></td>
+								<td><input type="button" id="allOn" onclick="LedControl('fanOn')" value="팬켜기"></td>
+								<td><input type="button" id="allOn" onclick="LedControl('pump1On')" value="펌프1켜기"></td>
+								<td><input type="button" id="allOn" onclick="LedControl('pump2On')" value="펌프2켜기"></td>
+								<td><input type="button" id="allOn" onclick="LedControl('pump3On')" value="펌프3켜기"></td>
+								<td><input type="button" id="doorOpen" onclick="LedControl('doorOpen')" value="문열기"></td>
+							</tr>
+							<tr>
+								<td><input type="button" id="ledOff" onclick="LedControl('ledOff')" value="끄기"></td>
+								<td><input type="button" id="allOff" onclick="LedControl('fanOff')" value="팬끄기"></td>
+								<td><input type="button" id="allOff" onclick="LedControl('pump1Off')" value="펌프1끄기"></td>
+								<td><input type="button" id="allOff" onclick="LedControl('pump2Off')" value="펌프2끄기"></td>
+								<td><input type="button" id="allOff" onclick="LedControl('pump3Off')" value="펌프3끄기"></td>
+								<td><input type="button" id="doorOpen" onclick="LedControl('doorClose')" value="문잠그기"></td>
+							</tr>
+						</table>
+						<table class="settingTimeTable">
+							<th>펌프1 셋팅</th>
+							<th>펌프2 셋팅</th>
+							<th>펌프3 셋팅</th>
+							<th>led 셋팅</th>
+						</table>
+						<!-- <input type="button" id="ledOn" onclick="LedControl('ledOn')" value="켜기">
+						<input type="button" id="ledOff" onclick="LedControl('ledOff')" value="끄기">
+						<input type="button" id="showTime" onclick="LedControl('showTime')" value="시간">
+						<input type="button" id="allOn" onclick="LedControl('fanOn')" value="팬켜기">
+						<input type="button" id="allOff" onclick="LedControl('fanOff')" value="팬끄기">
+						<input type="button" id="allOn" onclick="LedControl('pump1On')" value="펌프1켜기">
+						<input type="button" id="allOff" onclick="LedControl('pump1Off')" value="펌프1끄기">
+						<input type="button" id="allOn" onclick="LedControl('pump2On')" value="펌프2켜기">
+						<input type="button" id="allOff" onclick="LedControl('pump2Off')" value="펌프2끄기">
+						<input type="button" id="allOn" onclick="LedControl('pump3On')" value="펌프3켜기">
+						<input type="button" id="allOff" onclick="LedControl('pump3Off')" value="펌프3끄기">
+						<input type="button" id="doorOpen" onclick="LedControl('doorOpen')" value="문열기">
+						<input type="button" id="doorOpen" onclick="LedControl('doorClose')" value="문잠그기"> -->
+						<br>
+						<lable>펌프1 셋팅</lable>
+						<input type="number" id="Interrupt" />
+						<input type="button" id="changeTransmitDataInterrupt" onclick="LedControl('changeTransmitDataInterrupt')" value="전송 세팅값 변경">
+						<br>
+						<lable>led셋팅</lable>
+						<input type="time" id="ledOnTime" />
+						<input type="time" id="ledOffTime" />
+						<input type="button" id="changeSetting" onclick="LedControl('changeSetting1')" value="led세팅값 변경">
+						<!--
 				<lable>탱크1셋팅</lable>
 				<input type="time" id="pumpTime1"/>
 				<input type="time" id="ledOffTime"/>
@@ -42,10 +74,12 @@
 				<input type="time" id="ledOffTime"/>
 				<input type="button" id="changeSetting" onclick="LedControl('changeSetting4')" value="led세팅값 변경">
 				  -->
-				</form>
+					</form>
 				</div>
 			</div>
-		
+		</div>
+	</div>
+
 </body>
 
 <script  th:inline="javascript">

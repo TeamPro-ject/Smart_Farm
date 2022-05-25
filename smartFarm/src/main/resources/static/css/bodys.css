@@ -298,7 +298,47 @@ to {
 }
 
 .myChart{
+	
 	text-align:center;
 	align-content: center;
 }
 
+.sirclechartBox{
+	margin-top:10%;
+	width: 100%;
+	height: 100%;
+}
+
+.lsuChart{
+	display:inline-block;
+	width: 33%;
+	height: 300px;
+}
+.hmChart{
+	display:inline-block;
+	width: 33%;
+	height: 300px;
+}
+.hkjChart{
+	display:inline-block;
+	width: 33%;
+	height: 300px;
+}
+
+/* settingChangeHTML */
+.setting{
+	margin-top: 5%;
+}
+
+.settingTable{
+	border-collapse:collapse;
+	margin:auto;
+	width: 70%;
+	font-family: 'Dongle';
+	font-size:20px;
+}
+
+.settingTable th{
+	text-align:center;
+	background-color: cornflowerblue;
+}

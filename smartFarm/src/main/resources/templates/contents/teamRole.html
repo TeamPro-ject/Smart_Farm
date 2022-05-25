@@ -18,10 +18,9 @@
 		lsudata.addRows([ [ '승욱', 5 ], [ '혜민', 3 ], [ '광진', 2 ] ]);
 		var opt = {
 			'title' : '이승욱',
-			'width' : 300,
-			'height' : 300,
 			pieSliceText : 'label',
-			legend : 'none'
+			legend : 'none',
+			colors:['lightcoral','skyblue','mediumaquamarine','palevioletred','darkgray']
 		};
 		var lsuchart = new google.visualization.PieChart(document
 				.getElementById('lsuChart'));
@@ -38,7 +37,8 @@
 			'width' : 300,
 			'height' : 300,
 			pieSliceText : 'label',
-			legend : 'none'
+			legend : 'none',
+			colors:['lightcoral','skyblue','mediumaquamarine','palevioletred','darkgray']
 		};
 		var hmchart = new google.visualization.PieChart(document
 				.getElementById('hmChart'));
@@ -55,7 +55,8 @@
 			'width' : 300,
 			'height' : 300,
 			pieSliceText : 'label',
-			legend : 'none'
+			legend : 'none',
+			colors:['lightcoral','skyblue','mediumaquamarine','palevioletred','darkgray']
 		};
 		var hkjchart = new google.visualization.PieChart(document
 				.getElementById('hkjChart'));
@@ -66,10 +67,10 @@
 <body>
 	<div class="main">
 		<div class="inner">
-			<div>
-			<div id="lsuChart"></div>
-			<div id="hmChart"></div>
-			<div id="hkjChart"></div>
+			<div class="sirclechartBox">
+			<div class="lsuChart" id="lsuChart"></div>
+			<div class="hmChart" id="hmChart"></div>
+			<div class="hkjChart" id="hkjChart"></div>
 			</div>
 		</div>
 	</div>
