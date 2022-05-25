@@ -17,20 +17,20 @@
 							<th>PUMP3</th>
 							<th>DOOR</th>
 							<tr>
-								<td><input type="button" id="ledOn" onclick="LedControl('ledOn')" value="켜기"></td>
-								<td><input type="button" id="allOn" onclick="LedControl('fanOn')" value="팬켜기"></td>
-								<td><input type="button" id="allOn" onclick="LedControl('pump1On')" value="펌프1켜기"></td>
-								<td><input type="button" id="allOn" onclick="LedControl('pump2On')" value="펌프2켜기"></td>
-								<td><input type="button" id="allOn" onclick="LedControl('pump3On')" value="펌프3켜기"></td>
-								<td><input type="button" id="doorOpen" onclick="LedControl('doorOpen')" value="문열기"></td>
+								<td><input type="button" id="ledOn" onclick="ArduinoControl('ledOn')" value="켜기"></td>
+								<td><input type="button" id="allOn" onclick="ArduinoControl('fanOn')" value="팬켜기"></td>
+								<td><input type="button" id="allOn" onclick="ArduinoControl('pump1On')" value="펌프1켜기"></td>
+								<td><input type="button" id="allOn" onclick="ArduinoControl('pump2On')" value="펌프2켜기"></td>
+								<td><input type="button" id="allOn" onclick="ArduinoControl('pump3On')" value="펌프3켜기"></td>
+								<td><input type="button" id="doorOpen" onclick="ArduinoControl('doorOpen')" value="문열기"></td>
 							</tr>
 							<tr>
-								<td><input type="button" id="ledOff" onclick="LedControl('ledOff')" value="끄기"></td>
-								<td><input type="button" id="allOff" onclick="LedControl('fanOff')" value="팬끄기"></td>
-								<td><input type="button" id="allOff" onclick="LedControl('pump1Off')" value="펌프1끄기"></td>
-								<td><input type="button" id="allOff" onclick="LedControl('pump2Off')" value="펌프2끄기"></td>
-								<td><input type="button" id="allOff" onclick="LedControl('pump3Off')" value="펌프3끄기"></td>
-								<td><input type="button" id="doorOpen" onclick="LedControl('doorClose')" value="문잠그기"></td>
+								<td><input type="button" id="ledOff" onclick="ArduinoControl('ledOff')" value="끄기"></td>
+								<td><input type="button" id="allOff" onclick="ArduinoControl('fanOff')" value="팬끄기"></td>
+								<td><input type="button" id="allOff" onclick="ArduinoControl('pump1Off')" value="펌프1끄기"></td>
+								<td><input type="button" id="allOff" onclick="ArduinoControl('pump2Off')" value="펌프2끄기"></td>
+								<td><input type="button" id="allOff" onclick="ArduinoControl('pump3Off')" value="펌프3끄기"></td>
+								<td><input type="button" id="doorOpen" onclick="ArduinoControl('doorClose')" value="문잠그기"></td>
 							</tr>
 						</table>
 						<table class="settingTimeTable">
@@ -49,45 +49,10 @@
 								<td><input type="button" id="changeTransmitDataInterrupt1" onclick="ArduinoControl('pumpSetting1')" value="전송 세팅값 변경"></td>
 								<td><input type="button" id="changeTransmitDataInterrupt2" onclick="ArduinoControl('pumpSetting2')" value="전송 세팅값 변경"></td>
 								<td><input type="button" id="changeTransmitDataInterrupt3" onclick="ArduinoControl('pumpSetting3')" value="전송 세팅값 변경"></td>
-								<td><input type="button" id="changeSetting" onclick="ArduinoControl('changeLedSetting1')" value="led세팅값 변경"></td>
+								<td><input type="button" id="changeSetting" onclick="ArduinoControl('changeLedSetting')" value="led세팅값 변경"></td>
 							</tr>
 						</table>
-						<!-- <input type="button" id="ledOn" onclick="LedControl('ledOn')" value="켜기">
-						<input type="button" id="ledOff" onclick="LedControl('ledOff')" value="끄기">
-						<input type="button" id="showTime" onclick="LedControl('showTime')" value="시간">
-						<input type="button" id="allOn" onclick="LedControl('fanOn')" value="팬켜기">
-						<input type="button" id="allOff" onclick="LedControl('fanOff')" value="팬끄기">
-						<input type="button" id="allOn" onclick="LedControl('pump1On')" value="펌프1켜기">
-						<input type="button" id="allOff" onclick="LedControl('pump1Off')" value="펌프1끄기">
-						<input type="button" id="allOn" onclick="LedControl('pump2On')" value="펌프2켜기">
-						<input type="button" id="allOff" onclick="LedControl('pump2Off')" value="펌프2끄기">
-						<input type="button" id="allOn" onclick="LedControl('pump3On')" value="펌프3켜기">
-						<input type="button" id="allOff" onclick="LedControl('pump3Off')" value="펌프3끄기">
-						<input type="button" id="doorOpen" onclick="LedControl('doorOpen')" value="문열기">
-						<input type="button" id="doorOpen" onclick="LedControl('doorClose')" value="문잠그기"> -->
-						<!-- <br>
-						<lable>펌프1 셋팅</lable>
-						<input type="number" id="Interrupt" />
-						<input type="button" id="changeTransmitDataInterrupt" onclick="LedControl('changeTransmitDataInterrupt')" value="전송 세팅값 변경">
-						<br>
-						<lable>led셋팅</lable>
-						<input type="time" id="ledOnTime" />
-						<input type="time" id="ledOffTime" />
-						<input type="button" id="changeSetting" onclick="LedControl('changeSetting1')" value="led세팅값 변경"> -->
-						<!--
-				<lable>탱크1셋팅</lable>
-				<input type="time" id="pumpTime1"/>
-				<input type="time" id="ledOffTime"/>
-				<input type="button" id="changeSetting" onclick="LedControl('changeSetting2')" value="led세팅값 변경">
-				<lable>탱크2셋팅</lable>
-				<input type="time" id="ledOnTime"/>
-				<input type="time" id="ledOffTime"/>
-				<input type="button" id="changeSetting" onclick="LedControl('changeSetting3')" value="led세팅값 변경">
-				<lable>탱크3셋팅</lable>
-				<input type="time" id="ledOnTime"/>
-				<input type="time" id="ledOffTime"/>
-				<input type="button" id="changeSetting" onclick="LedControl('changeSetting4')" value="led세팅값 변경">
-				  -->
+					
 					</form>
 				</div>
 			</div>
@@ -106,7 +71,7 @@ function ArduinoControl(action){
         var ws = new WebSocket(ipAddress);
         ws.onopen = function(){
            
-           if(action== "changeSetting1"){
+           if(action== "changeLedSetting"){
               ws.send(action+"/"+$("#ledOnTime").val()+"/"+$("#ledOffTime").val());
 
            }else if(action.indexOf("pumpSetting")>=0){
@@ -124,7 +89,15 @@ function ArduinoControl(action){
   
         };
         ws.onmessage = function(evt){
-         //alert(evt.data);
+        	Swal.fire({
+        		  position: 'top-end',
+        		  icon: 'success',
+        		  title: evt.data,
+        		  showConfirmButton: false,
+        		  timer: 700
+        		})
+        		
+         
             ws.close();
         };
         ws.onclose = function(){
