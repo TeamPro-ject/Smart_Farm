@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <link th:href="@{/css/smartFarm.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/arduino.js}"></script>
 <body>
 	<div id="wrapper">
 		<div id="main">
@@ -82,15 +83,12 @@
 
 </body>
 
-<script  th:inline="javascript">
+<script type="text/javascript">
 
 function LedControl(action){
-	var smartFarmVo=[[${SmartFarmVo}]];
-	var ipAddress= "ws://"+[[${SmartFarmVo.ipAddress}]]+":80";
-	alert(ipAddress);
     if("WebSocket" in window){//브라우저가 지원하는지 체크후
         //웹소켓을 열고
-        var ws = new WebSocket(ipAddress);
+        var ws = new WebSocket("ws://192.168.210.224:80");
         ws.onopen = function(){
         	
         	if(action== "changeSetting1"){
@@ -108,12 +106,12 @@ function LedControl(action){
             ws.close();
         };
         ws.onclose = function(){
-        	alert("실패");
         };
     } else {
         alert("웹소켓을 지원하지 않는 브라우저입니다.");
     }
 }
+
 
 </script>
 
