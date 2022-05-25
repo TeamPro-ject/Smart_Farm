@@ -4,72 +4,26 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js">
 	
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
 
 </head>
 
-<div class="main"> 시바
+<div class="main">
 	<div class="inner">
-		<canvas id="myChart" width="600px" height="200px"></canvas>
-		<script th:inline="javascript">
-			var minutess=[];
-			var today= new Date();
-			var hours=('0'+today.getHours()).slice(-2);
-			var minutes=('0'+today.getHours()).slice(-2);
-			for(var i=0; i > 60; i=+5){
+		<div class="summaryDiv">
+			<h1 class="summaryH1">스마트팜 개요</h1>
+			<div class="summaryBox">
+				PC나 모바일로 모니터링하며, 원격으로 농장을 관리할수 있다, 그리고<br>
+				적은 노동력으로 생산성을 높이고 고품질의 작물을 생산하는 방법이다.
 				
-				if(minutes-i < 0){
-					
-				}
-				
-			}
-			var ctx = document.getElementById('myChart');
-			var myChart = new Chart(ctx, {
-				/* bar or line 바로 보여줄것인지 라인으로 보여줄것인지 */
-				type : 'line',
-				data : {
-					/* x축 label */
-					labels : [
-						hours+ ':' +minutes55 , hours+ ':' +minutes50 ,
-						hours+ ':' +minutes45 , hours+ ':' +minutes40 ,
-						hours+ ':' +minutes35 , hours+ ':' +minutes30 ,
-						hours+ ':' +minutes25 , hours+ ':' +minutes20 ,
-						hours+ ':' +minutes15 , hours+ ':' +minutes10 ,
-						hours+ ':' +minutes5 , hours+ ':' +minutes 
-							],
-					datasets : [ {
-						label : '온도',
-						/* 그래프에 보여주는 수치 */
-						data : [ 10, 15, 13, 12, 17, 30 ],
-						backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
-								'rgba(54, 162, 235, 0.2)',
-								'rgba(255, 206, 86, 0.2)',
-								'rgba(75, 192, 192, 0.2)',
-								'rgba(153, 102, 255, 0.2)',
-								'rgba(255, 159, 64, 0.2)' ],
-						borderColor : [ 'rgba(255, 99, 132, 1)',
-								'rgba(54, 162, 235, 1)',
-								'rgba(255, 206, 86, 1)',
-								'rgba(75, 192, 192, 1)',
-								'rgba(153, 102, 255, 1)',
-								'rgba(255, 159, 64, 1)' ],
-						fill : true,
-						lineTension : 0,
-						borderWidth : 2
-					} ]
-				},
-				options : {
-					responsive : false,
-					scales : {
-						yAxes : [ {
-							ticks : {
-								beginAtZero : true
-							}
-						} ]
-					}
-				}
-			});
-		</script>
-		
+			</div>
+		<div class="summaryDiv">
+			<h1 class="summaryH1">스마트팜 목적</h1>
+			<div class="summaryBox">
+				생산성 향상 , 편리성 등등			
+			</div>
 	</div>
 </div>
 </html>

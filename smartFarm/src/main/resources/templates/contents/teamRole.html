@@ -1,10 +1,78 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+	//구글차트 
+	google.charts.load('current', {
+		'packages' : [ 'corechart' ]
+	});
+	google.charts.setOnLoadCallback(lsudrawChart);
+	google.charts.setOnLoadCallback(hmdrawChart);
+	google.charts.setOnLoadCallback(hkjdrawChart);
+	function lsudrawChart() {
+		var lsudata = new google.visualization.DataTable();
+		lsudata.addColumn('string', 'Name');
+		lsudata.addColumn('number', '비중');
+		lsudata.addRows([ [ '승욱', 5 ], [ '혜민', 3 ], [ '광진', 2 ] ]);
+		var opt = {
+			'title' : '이승욱',
+			'width' : 300,
+			'height' : 300,
+			pieSliceText : 'label',
+			legend : 'none'
+		};
+		var lsuchart = new google.visualization.PieChart(document
+				.getElementById('lsuChart'));
+		lsuchart.draw(lsudata, opt);
+	}
+
+	function hmdrawChart() {
+		var hmdata = new google.visualization.DataTable();
+		hmdata.addColumn('string', 'Foods');
+		hmdata.addColumn('number', '비중');
+		hmdata.addRows([ [ '승욱', 5 ], [ '혜민', 3 ], [ '광진', 2 ] ]);
+		var opt = {
+			'title' : '이혜미',
+			'width' : 300,
+			'height' : 300,
+			pieSliceText : 'label',
+			legend : 'none'
+		};
+		var hmchart = new google.visualization.PieChart(document
+				.getElementById('hmChart'));
+		hmchart.draw(hmdata, opt);
+	}
+
+	function hkjdrawChart() {
+		var hkjdata = new google.visualization.DataTable();
+		hkjdata.addColumn('string', 'Foods');
+		hkjdata.addColumn('number', '비중');
+		hkjdata.addRows([ [ '승욱', 5 ], [ '혜민', 3 ], [ '광진', 2 ] ]);
+		var opt = {
+			'title' : '한광진',
+			'width' : 300,
+			'height' : 300,
+			pieSliceText : 'label',
+			legend : 'none'
+		};
+		var hkjchart = new google.visualization.PieChart(document
+				.getElementById('hkjChart'));
+		hkjchart.draw(hkjdata, opt);
+	}
+</script>
 </head>
 <body>
-	<h1>다섯번째</h1>
+	<div class="main">
+		<div class="inner">
+			<div>
+			<div id="lsuChart"></div>
+			<div id="hmChart"></div>
+			<div id="hkjChart"></div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
+

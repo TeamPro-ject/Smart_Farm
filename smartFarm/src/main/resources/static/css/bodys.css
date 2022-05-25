@@ -200,7 +200,7 @@ to {
 	transform: scale(1)
 }}
 
-/* shamePoint */
+/* monitoring */
 .chartBox{
 	width:1000px; 
 	height: 550px; 
@@ -267,3 +267,38 @@ to {
 	margin-top:10%;
 	padding:20px;
 }
+.dateDiv{
+	text-align: center;
+	padding:7px;
+	font-family: 'Dongle';
+	font-size: 25px;
+}
+
+/* explanation */
+.summaryDiv{
+	font-family: 'Dongle';
+	align-content:center;
+	text-align: center;
+	
+}
+.summaryH1{
+	font-size: 60px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.035em;
+}
+.summaryBox{
+	display:inline-block;
+	padding:20px;
+	border-radius: 30px;
+	font-size:35px;
+	background-color:rgb(201,201,201);
+	width: 70%;
+	height: 50%;
+}
+
+.myChart{
+	text-align:center;
+	align-content: center;
+}
+
