@@ -28,9 +28,9 @@ public class ArduinoService {
 
 	public void insertSensingData(HashMap<String, Object> param) {
 		MonitoringVo mvo = MonitoringVo.builder(param.get("device").toString())
-				.firstWaterTankLevel((Integer.parseInt(param.get("firstdistance").toString())*61)+"")
-				.secondWaterTankLevel((Integer.parseInt(param.get("secondDistance").toString())*61)+"")
-				.thirdWaterTankLevel((Integer.parseInt(param.get("thirdDistance").toString())*61)+"")
+				.firstWaterTankLevel(900-(Integer.parseInt(param.get("firstdistance").toString())*61)+"")
+				.secondWaterTankLevel(900-(Integer.parseInt(param.get("secondDistance").toString())*61)+"")
+				.thirdWaterTankLevel(900-(Integer.parseInt(param.get("thirdDistance").toString())*61)+"")
 				.monitoringHumidity(param.get("humid").toString()).monitoringTemperature(param.get("tempC").toString())
 				.magneticValue(param.get("magneticValue").toString())
 				.monitoringIlluminance(param.get("illuminanceValue").toString()).build();
@@ -42,9 +42,9 @@ public class ArduinoService {
 				|| mvo.getThirdWaterTankLevel().equals("") || mvo.getMagneticValue().equals("")
 				|| mvo.getMonitoringHumidity().equals("") || mvo.getMonitoringTemperature().equals("")
 				|| mvo.getMonitoringIlluminance().equals("") 
-				|| Integer.parseInt(mvo.getFirstWaterTankLevel()) > 900
-				|| Integer.parseInt(mvo.getSecondWaterTankLevel()) > 900
-				|| Integer.parseInt(mvo.getThirdWaterTankLevel()) > 900 || param.get("ip").toString().equals("")){
+				|| Integer.parseInt(mvo.getFirstWaterTankLevel()) >= 900 || Integer.parseInt(mvo.getFirstWaterTankLevel()) < 1
+				|| Integer.parseInt(mvo.getSecondWaterTankLevel()) >= 900|| Integer.parseInt(mvo.getSecondWaterTankLevel()) < 1
+				|| Integer.parseInt(mvo.getThirdWaterTankLevel()) >= 900 || Integer.parseInt(mvo.getThirdWaterTankLevel()) < 1 ||param.get("ip").toString().equals("")){
 			log.info("잘못된 값 송신");
 			return;
 		}
