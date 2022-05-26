@@ -52,7 +52,6 @@
 <script th:inline="javascript">
 
 	let monitoring=[[${monitoringData}]];
-	//const labels = [ 'January', 'February', 'March', 'April', 'May', 'June', ];
 	const labels = monitoring.map(v => v.monitoringTime); //시간값
 	const temp = monitoring.map(v => v.monitoringTemperature); //온도값
 	const humidity = monitoring.map(v => v.monitoringHumidity); //습도값
